@@ -12,7 +12,7 @@ namespace NunitIssueReproTests
         }
 
         [TestCase("ClassLibrarySample", TestName = "WithRspFileEmptyAnalyzerResult", ExpectedResult = 0)]
-        [TestCase("AutoResponseFileIssueRepro", TestName = "WithoutRspFilePopulatedAnalyzerResult", ExpectedResult = 1)]
+        [TestCase("ConsoleAppSample", TestName = "WithoutRspFilePopulatedAnalyzerResult", ExpectedResult = 1)]
         public int BuildProjectAnalyzerTest(string pojectTargetName)
         {
             var rootDir = Path.Combine(Environment.CurrentDirectory, ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar);
