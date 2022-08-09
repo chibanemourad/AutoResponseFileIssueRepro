@@ -11,13 +11,13 @@ namespace NunitIssueReproTests
             _manager = new AnalyzerManager();
         }
 
-        [TestCase("ClassLibrarySample", ExpectedResult = 0)]
-        [TestCase("AutoResponseFileIssueRepro", ExpectedResult = 1)]
-        public int WithoutRspMsBuildFileBuildProjectAnalyzerSuccessfullyTest(string pojectTargetName)
+        [TestCase("ClassLibrarySample", TestName = "WithRspFileEmptyAnalyzerResult", ExpectedResult = 0)]
+        [TestCase("AutoResponseFileIssueRepro", TestName = "WithoutRspFilePopulatedAnalyzerResult", ExpectedResult = 1)]
+        public int BuildProjectAnalyzerTest(string pojectTargetName)
         {
             var rootDir = Path.Combine(Environment.CurrentDirectory, ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar);
             var targetProject = Path.Combine(rootDir, pojectTargetName + Path.DirectorySeparatorChar + $"{pojectTargetName}.csproj");
-            Assert.IsTrue(File.Exists(targetProject));
+            Assert.That(File.Exists(targetProject), Is.True);
             var analyzer = _manager.GetProject(targetProject);
             var buildResult = analyzer.Build();
             return buildResult.Count;
